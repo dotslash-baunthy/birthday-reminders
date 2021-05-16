@@ -17,3 +17,11 @@ function sendReminder() {
     }
   })
 }
+
+function createTrigger() {
+  ScriptApp.newTrigger('sendReminder')
+      .timeBased()
+      .everyDays(1)
+      .atHour(6)
+      .create();
+}
