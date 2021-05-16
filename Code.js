@@ -12,7 +12,12 @@ function sendReminder() {
         GmailApp.sendEmail(emailAddress, "Happy birthday!", "Happy birthday, " + name);
       }
       catch (e) {
-        GmailApp.sendEmail(errorEmail, "Error sending email", "There was an error sending email with script ID " + ScriptApp.getScriptId);
+        try {
+          GmailApp.sendEmail(errorEmail, "Error sending email", "There was an error sending email with script ID " + ScriptApp.getScriptId);
+        }
+        catch (e) {
+          Logger.log("Failed to send email for " + name + " to " + emailAddress + ". Make sure the data in the sheet is valid (valid email address). If it is, is the API down?");
+        }
       }
     }
   })
@@ -20,8 +25,8 @@ function sendReminder() {
 
 function createTrigger() {
   ScriptApp.newTrigger('sendReminder')
-      .timeBased()
-      .everyDays(1)
-      .atHour(6)
-      .create();
+    .timeBased()
+    .everyDays(1)
+    .atHour(6)
+    .create();
 }
