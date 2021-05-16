@@ -13,7 +13,7 @@ function sendReminder() {
       }
       catch (e) {
         try {
-          GmailApp.sendEmail(errorEmail, "Error sending email", "There was an error sending email with script ID " + ScriptApp.getScriptId);
+          GmailApp.sendEmail(errorEmail, "Error sending email", "There was an error sending email to " + name + " - " + emailAddress + " with script ID " + ScriptApp.getScriptId);
         }
         catch (e) {
           Logger.log("Failed to send email for " + name + " to " + emailAddress + ". Make sure the data in the sheet is valid (valid email address). If it is, is the API down?");
