@@ -1,1 +1,1 @@
-import 'google-apps-script'
+import 'google-apps-script';
